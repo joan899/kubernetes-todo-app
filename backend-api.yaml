@@ -18,7 +18,10 @@ spec:
         image: glgelopfalcon/database-api:v1
         env:
         - name: MONGO_CONNECTION_STRING
-          value: mongodb://todos-db
+          valueFrom:
+            configMapKeyRef:
+              name: todo-configmap
+              key: MONGO_CONNECTION_STRING
 ---
 apiVersion: v1
 kind: Service
