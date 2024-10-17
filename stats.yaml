@@ -78,11 +78,20 @@ spec:
         image: glgelopfalcon/stats-worker:v1
         env:
         - name: STATS_QUEUE_URI
-          value: amqp://stats-queue
+          valueFrom:
+            configMapKeyRef:
+              name: todo-configmap
+              key: STATS_QUEUE_URI
         - name: REDIS_HOST
-          value: stats-cache
+          valueFrom:
+            configMapKeyRef:
+              name: todo-configmap
+              key: REDIS_HOST
         - name: REDIS_PORT
-          value: "6379"
+          valueFrom:
+            configMapKeyRef:
+              name: todo-configmap
+              key: REDIS_PORT
 ---
 apiVersion: apps/v1
 kind: Deployment
