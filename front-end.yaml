@@ -20,7 +20,10 @@ spec:
         imagePullPolicy: Always
         env:
         - name: STATS_QUEUE_URI
-          value: amqp://stats-queue
+          valueFrom:
+            configMapKeyRef:
+              name: todo-configmap
+              key: STATS_QUEUE_URI
 ---
 apiVersion: v1
 kind: Service
